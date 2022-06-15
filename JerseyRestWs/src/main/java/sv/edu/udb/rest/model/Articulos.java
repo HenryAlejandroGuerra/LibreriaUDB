@@ -9,16 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Configuracion implements Serializable {
-
+public class Articulos implements Serializable {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int idConfig;
-	private String configuracion;
-	private String valor;
-	private String cargo;
+	private int idArticulo;
+	private String codigoArticulo;
+	private String nombreArticulo;
+	private String proveedor;
 
 }
