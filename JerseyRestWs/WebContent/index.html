@@ -33,8 +33,8 @@
 				 	<tbody>
 				 		<tr>
 				 			<th scope="row"><div class="text-center"><span class="badge bg-success">GET</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso</code></td>
-				 			<td width="20%">Lista todos los cursos</td>
+				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/usuarios</code></td>
+				 			<td width="20%">Lista todos los usuarios</td>
 				 			<td width="15%">
 				 				<code style="color: black;">
 				 					N/A
@@ -44,138 +44,57 @@
 				 		</tr>
 				 		<tr>
 				 			<th scope="row"><div class="text-center"><span class="badge bg-success">GET</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}</code></td>
-				 			<td width="20%">Obtener informaci&oacute;n de un curso espec&iacute;fico</td>
+				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/usuarios/{id}</code></td>
+				 			<td width="20%">Obtener informaci&oacute;n de un usuario espec&iacute;fico</td>
 				 			<td width="15%">
 				 				<code style="color: black;">
-				 					id
+				 					idUsuario
 				 				</code>
 				 			</td>
 				 			<td width="15%">PathParam</td>
 				 		</tr>
 				 		<tr>
 				 			<th scope="row"><div class="text-center"><span class="badge bg-primary">POST</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso</code></td>
-				 			<td width="20%">Crear un nuevo Curso</td>
+				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/usuarios</code></td>
+				 			<td width="20%">Crear un nuevo Usuario</td>
 				 			<td width="15%">
 				 				<code style="color: black;">
-				 					nombreCurso:"" <br>
-				 					nombreProfesor:""<br>
-				 					numeroTelefono:""<br>
-				 					email:""
+				 					nombreUser:"" <br>
+				 					contra:""<br>
+				 					nombre:""<br>
+				 					apellido:""<br>
+				 					correo:""<br>
+				 					cargo:""
 				 				</code>
 				 			</td>
 				 			<td width="15%">x-www-form-urlencoded</td>
 				 		</tr>
 				 		<tr>
 				 			<th scope="row"><div class="text-center"><span class="badge" style="background-color: #7952B3">PUT</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}</code></td>
-				 			<td width="20%">Actualizar datos de un curso</td>
+				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/usuarios/{id}</code></td>
+				 			<td width="20%">Actualizar datos de un usuario</td>
 				 			<td width="15%">
 				 				<code style="color: black;">
-				 					nombreCurso:""<br>
-				 					nombreProfesor:""<br>
-				 					numeroTelefono:""<br>
-				 					email:""
+				 					nombreUser:"" <br>
+				 					contra:""<br>
+				 					nombre:""<br>
+				 					apellido:""<br>
+				 					correo:""<br>
+				 					cargo:""
 				 				</code>
 				 			</td>
 				 			<td width="15%">x-www-form-urlencoded</td>
 				 		</tr>
 				 		<tr>
 				 			<th scope="row"><div class="text-center"><span class="badge bg-danger">DELETE</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}</code></td>
-				 			<td width="20%">Eliminar curso</td>
+				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/usuarios/{id}</code></td>
+				 			<td width="20%">Eliminar usuario</td>
 				 			<td width="15%">
 				 				<code style="color: black;">
-				 					id
+				 					idUsuario
 				 				</code>
 				 			</td>
 				 			<td width="15%">PathParam</td>
-				 		</tr>
-				 		<tr>
-				 			<th scope="row"><div class="text-center"><span class="badge bg-success">GET</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}/alumnos</code></td>
-				 			<td width="20%">Listar alumnos pertenecientes a un curso</td>
-				 			<td width="15%">
-				 				<code style="color: black;">
-				 					id
-				 				</code>
-				 			</td>
-				 			<td width="15%">PathParam</td>
-				 		</tr>
-				 		<tr>
-				 			<th scope="row"><div class="text-center"><span class="badge bg-success">GET</span></div></th>
-				 			<td><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}/alumnos/{idAlumno}</code></td>
-				 			<td width="20%">Obtener un alumno filtrado por el curso al que pertenece</td>
-				 			<td width="15%">
-				 				<code style="color: black;">
-				 					id, idAlumno
-				 				</code>
-				 			</td>
-				 			<td width="15%">PathParam</td>
-				 		</tr>
-				 		<tr>
-				 			<th scope="row"  class="align-middle"><div class="text-center"><span class="badge bg-primary">POST</span></div></th>
-				 			<td  class="align-middle"><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}/alumnos</code></td>
-				 			<td width="20%" class="align-middle">Crear alumno asociandolo a un curso en espec&iacute;fico</td>
-				 			<td width="15%"  class="align-middle">
-				 				<code style="color: black;">
-				 					{id}
-				 				</code>
-				 				<hr>
-				 				<code style="color: black;">
-				 					nombreAlumno:""
-									fechaNacimiento:"YYYY-MM-dd"
-									numeroTelefono:""
-									email:""
-				 				</code>
-				 			</td>
-				 			<td width="15%" class="align-middle">
-				 			PathParam;<br>
-				 			x-www-form-urlencoded</td>
-				 		</tr>
-				 		<tr>
-				 			<th scope="row"  class="align-middle"><div class="text-center"><span class="badge" style="background-color: #7952B3">PUT</span></div></th>
-				 			<td  class="align-middle"><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}/alumnos/{idAlumno}</code></td>
-				 			<td width="20%" class="align-middle">Modificar datos de un alumno perteneciente a un curso espec&iacute;fico</td>
-				 			<td width="15%"  class="align-middle">
-				 				<code style="color: black;">
-				 					id; idAlumno
-				 				</code>
-				 				<hr>
-				 				<code style="color: black;">
-				 					nombreAlumno:""
-									fechaNacimiento:"YYYY-MM-dd"
-									numeroTelefono:""
-									email:""
-				 				</code>
-				 			</td>
-				 			<td width="15%" class="align-middle">
-				 			PathParam;<br>
-				 			PathParam;<br>
-				 			x-www-form-urlencoded</td>
-				 		</tr>
-				 		
-				 		<tr>
-				 			<th scope="row"  class="align-middle"><div class="text-center"><span class="badge bg-danger">DELETE</span></div></th>
-				 			<td  class="align-middle"><code>{ip}:{puerto}/JerseyRestWs/rest/curso/{id}/alumnos/{idAlumno}</code></td>
-				 			<td width="20%" class="align-middle">Eliminar alumno perteneciente a un curso espec&iacute;fico</td>
-				 			<td width="15%"  class="align-middle">
-				 				<code style="color: black;">
-				 					id; idAlumno
-				 				</code>
-				 				<hr>
-				 				<code style="color: black;">
-				 					nombreAlumno:""
-									fechaNacimiento:"YYYY-MM-dd"
-									numeroTelefono:""
-									email:""
-				 				</code>
-				 			</td>
-				 			<td width="15%" class="align-middle">
-				 			PathParam;<br>
-				 			PathParam;<br>
-				 			x-www-form-urlencoded</td>
 				 		</tr>
 				 	</tbody>
 				</table>

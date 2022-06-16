@@ -46,8 +46,9 @@ public class UsuariosService {
 		return Response.status(Status.OK.getStatusCode()).entity(usu).build();
 	}
 	
+
 	@GET
-	@Path("{id}")
+	@Path("/byId/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response usuariosFindById(@PathParam("id") int id) {
 		Usuarios usu = null;
@@ -67,6 +68,7 @@ public class UsuariosService {
 	}
 	
 	@GET
+	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response usuariosLogin(@FormParam("userName") String userName, @FormParam("contra") String contra) {
 		Usuarios usu = null;
@@ -86,6 +88,7 @@ public class UsuariosService {
 	}
 	
 	@POST
+	@Path("/create")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response newUsuario(@FormParam("nombreUser") String nombreUser, @FormParam("contra") String contra, 
 			@FormParam("nombre") String nombre, @FormParam("apellido") String apellido, 
@@ -115,6 +118,7 @@ public class UsuariosService {
 	}
 	
 	@POST
+	@Path("/update")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUsuario(@FormParam("idUsuario") int idUsuario, @FormParam("nombreUser") String nombreUser, 
 			@FormParam("contra") String contra, @FormParam("nombre") String nombre, @FormParam("apellido") String apellido, 
@@ -145,7 +149,7 @@ public class UsuariosService {
 	}
 	
 	@DELETE
-	@Path("{idUsuario}")
+	@Path("/delete/{idUsuario}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteCurso(@PathParam("idUsuario") int idUsuario) {
 		Usuarios usu = null;
@@ -169,5 +173,5 @@ public class UsuariosService {
 
 		return Response.status(Status.OK.getStatusCode()).entity(usu).build();
 	}
-
+	
 }

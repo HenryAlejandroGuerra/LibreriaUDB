@@ -120,7 +120,7 @@ public class UsuariosDao extends DbConnection implements Dao<Usuarios> {
 		Usuarios usuario = null;
 		try {
 			connect();
-			pst = conn.prepareStatement(DbQuery.FIND_USER_BY_ID);
+			pst = conn.prepareStatement(DbQuery.FIND_USER_BY_USER_CONTRA);
 			pst.setString(1, userName);
 			pst.setString(2, contra);
 			
