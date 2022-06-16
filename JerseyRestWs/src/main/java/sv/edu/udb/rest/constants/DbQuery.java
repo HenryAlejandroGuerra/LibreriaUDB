@@ -23,6 +23,9 @@ public final class DbQuery {
 			+ "SET u.nombreUser = ?, u.contra = ?, u.nombre = ?, u.apellido = ?, u.correo = ?, u.cargo = ?"
 			+ "WHERE u.idUsuario = ?";
 	public static final String DELETE_USER = "DELETE FROM control_libreria.usuarios WHERE idUsuario = ?";
+	public static final String FIND_USER_BY_USER_CONTRA = "SELECT * "
+			+ "FROM control_libreria.usuarios "
+			+ "WHERE nombreUser = ? AND contra = ?";
 	
 	// Query Articulos
 	public static final String FIND_ARTICULO_BY_ID = "SELECT * "
@@ -47,9 +50,9 @@ public final class DbQuery {
 	public static final String DELETE_REGCOMPRAS = "DELETE FROM control_libreria.registroCompras WHERE idArticulo = ?";
 	public static final String FIND_REGCOMPRAS_BY_ART = "SELECT * "
 			+ "FROM control_libreria.registroCompras r, control_libreria.articulos a"
-			+ "WHERE r.idregistro = ? AND a.idArticulo = ?";
+			+ "WHERE a.idArticulo = ?";
 	public static final String FIND_REGCOMPRAS_BY_USUARIO = "SELECT * "
 			+ "FROM control_libreria.registroCompras r, control_libreria.usuarios u"
-			+ "WHERE r.idregistro = ? AND u.idUsuario = ?";
+			+ "WHERE u.idUsuario = ?";
 
 }

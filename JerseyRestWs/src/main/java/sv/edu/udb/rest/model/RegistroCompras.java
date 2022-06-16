@@ -1,7 +1,6 @@
 package sv.edu.udb.rest.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.Getter;

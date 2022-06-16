@@ -1,7 +1,6 @@
 package sv.edu.udb.rest.model.dao;
 
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,9 +10,7 @@ import java.util.logging.Logger;
 
 import sv.edu.udb.rest.connection.DbConnection;
 import sv.edu.udb.rest.constants.DbQuery;
-import sv.edu.udb.rest.model.Alumno;
 import sv.edu.udb.rest.model.Articulos;
-import sv.edu.udb.rest.model.Curso;
 import sv.edu.udb.rest.model.RegistroCompras;
 import sv.edu.udb.rest.model.Usuarios;
 import sv.edu.udb.rest.model.dao.interfaces.Dao;
@@ -117,14 +114,116 @@ public class RegistroComprasDao extends DbConnection implements Dao<RegistroComp
 
 	@Override
 	public void update(RegistroCompras t) {
-		// TODO Auto-generated method stub
-		
+		try {
+			connect();
+			pst = this.conn.prepareStatement(DbQuery.UPDATE_REGCOMPRAS);
+			pst.setInt(1, t.getIdArticulo());
+			pst.setDate(2, Date.valueOf(t.getFecha()));
+			pst.setString(3, t.getConcepto());
+			pst.setDouble(4, t.getPrecioUnit());
+			pst.setInt(5, t.getCantidad());
+			pst.setInt(6, t.getIdUsuario());
+			pst.setInt(7, t.getIdregistro());
+			pst.executeUpdate();
+			close();
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
 	}
 
 	@Override
 	public void delete(RegistroCompras t) {
-		// TODO Auto-generated method stub
+		try {
+			connect();
+			pst = conn.prepareStatement(DbQuery.DELETE_REGCOMPRAS);
+			pst.setInt(1, t.getIdregistro());
+			pst.executeUpdate();
+			close();
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
+	}
+	
+	public List<RegistroCompras> findRegistrosPorArticulos(int idArticulo) {
+		ArrayList<RegistroCompras> regComprasList = new ArrayList<RegistroCompras>();
+		ArticulosDao artDao = new ArticulosDao();
+		UsuariosDao usuDao = new UsuariosDao();
+		try {
+			connect();
+			pst = this.conn.prepareStatement(DbQuery.FIND_REGCOMPRAS_BY_ART);
+			pst.setInt(1, idArticulo);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				RegistroCompras regCompras = new RegistroCompras();
+				regCompras.setIdregistro(rs.getInt("idregistro"));
+				regCompras.setFecha(rs.getDate("fecha").toString());
+				regCompras.setConcepto(rs.getString("concepto"));
+				regCompras.setPrecioUnit(rs.getDouble("precioUnit"));
+				regCompras.setCantidad(rs.getInt("cantidad"));
+				
+				Articulos art = new Articulos(); // Obtener Articulo
+				if(regCompras.getIdArticulo() > 0) {
+					art = artDao.findById(regCompras.getIdArticulo());
+				}
+				regCompras.setArt(art);
+				
+				Usuarios usu = new Usuarios(); // Obtener Usuario
+				if(regCompras.getIdUsuario() > 0) {
+					usu = usuDao.findById(regCompras.getIdUsuario());
+				}
+				regCompras.setUsu(usu);
+				
+				regComprasList.add(regCompras);
+			}
+			close();
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
 		
+		return regComprasList;
+	}
+	
+	public List<RegistroCompras> findRegistrosPorUsuarios(int idUsuario) {
+		ArrayList<RegistroCompras> regComprasList = new ArrayList<RegistroCompras>();
+		ArticulosDao artDao = new ArticulosDao();
+		UsuariosDao usuDao = new UsuariosDao();
+		try {
+			connect();
+			pst = this.conn.prepareStatement(DbQuery.FIND_REGCOMPRAS_BY_USUARIO);
+			pst.setInt(1, idUsuario);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				RegistroCompras regCompras = new RegistroCompras();
+				regCompras.setIdregistro(rs.getInt("idregistro"));
+				regCompras.setFecha(rs.getDate("fecha").toString());
+				regCompras.setConcepto(rs.getString("concepto"));
+				regCompras.setPrecioUnit(rs.getDouble("precioUnit"));
+				regCompras.setCantidad(rs.getInt("cantidad"));
+				
+				Articulos art = new Articulos(); // Obtener Articulo
+				if(regCompras.getIdArticulo() > 0) {
+					art = artDao.findById(regCompras.getIdArticulo());
+				}
+				regCompras.setArt(art);
+				
+				Usuarios usu = new Usuarios(); // Obtener Usuario
+				if(regCompras.getIdUsuario() > 0) {
+					usu = usuDao.findById(regCompras.getIdUsuario());
+				}
+				regCompras.setUsu(usu);
+				
+				regComprasList.add(regCompras);
+			}
+			close();
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
+		
+		return regComprasList;
 	}
 
 }

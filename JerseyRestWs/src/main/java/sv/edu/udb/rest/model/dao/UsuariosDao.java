@@ -19,7 +19,7 @@ public class UsuariosDao extends DbConnection implements Dao<Usuarios> {
 		Usuarios usuario = null;
 		try {
 			connect();
-			pst = conn.prepareStatement(DbQuery.FIND_CONFIG_BY_ID);
+			pst = conn.prepareStatement(DbQuery.FIND_USER_BY_ID);
 			pst.setInt(1, id);
 			
 			while(rs.next()) {
@@ -114,6 +114,30 @@ public class UsuariosDao extends DbConnection implements Dao<Usuarios> {
 		} catch (SQLException e) {
 			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
 		}
+	}
+	
+	public Usuarios findByUserContra(String userName, String contra) {
+		Usuarios usuario = null;
+		try {
+			connect();
+			pst = conn.prepareStatement(DbQuery.FIND_USER_BY_ID);
+			pst.setString(1, userName);
+			pst.setString(2, contra);
+			
+			while(rs.next()) {
+				usuario = new Usuarios();
+				usuario.setIdUsuario(rs.getInt("idUsuario"));
+				usuario.setNombreUser(rs.getString("nombreUser"));
+				usuario.setContra(rs.getString("contra"));
+				usuario.setNombre(rs.getString("nombre"));
+				usuario.setApellido(rs.getString("apellido"));
+				usuario.setCorreo(rs.getString("correo"));
+				usuario.setCargo(rs.getString("cargo"));
+			}
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
+		return usuario;
 	}
 
 }
